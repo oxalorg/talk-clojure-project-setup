@@ -1,3 +1,4 @@
 {:paths ["src" "resources"]
- :deps {org.clojure/data.json {:mvn/version "2.0.2"}
+ :deps {hiccup/hiccup {:mvn/version "1.0.5"}
+        org.clojure/data.json {:mvn/version "2.0.2"}
         ring/ring {:mvn/version "1.9.2"}}}

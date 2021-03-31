@@ -1,5 +1,6 @@
 (ns demo.core
   (:require [clojure.data.json :as json]
+            [hiccup.core :as h]
             [ring.middleware.resource :refer [wrap-resource]]
             [ring.middleware.content-type :refer [wrap-content-type]]
             [ring.adapter.jetty :as jetty])
@@ -7,7 +8,12 @@
 
 (defn html-handler [request]
   {:status 200
-   :body "Hello world!"})
+   :body (h/html
+          [:html
+           [:head
+            [:script {:type "application/javascript" :src "/simple.js"}]]
+           [:body
+            [:h2 "Hello world!"]]])})
 
 (defn json-handler [request]
   {:status 200
@@ -22,10 +28,10 @@
 (def app
   (->
    (wrap-resource handler "public")
-   (wrap-content-type)))
+   #_(wrap-content-type)))
 
 (def ^Server server
-  (jetty/run-jetty app {:port 3000 :join? false}))
+  (jetty/run-jetty (var app) {:port 3000 :join? false}))
 
 (comment
   (-> server .stop))
