@@ -10,10 +10,9 @@
   {:status 200
    :body (h/html
           [:html
-           [:head
-            [:script {:type "application/javascript" :src "/simple.js"}]]
            [:body
-            [:h2 "Hello world!"]]])})
+            [:h2 "Hello world!"]
+            [:script {:type "application/javascript" :src "/out/main.js"}]]])})
 
 (defn json-handler [request]
   {:status 200
