@@ -1,17 +1,17 @@
 (ns demo.core
   (:require [clojure.data.json :as json]
             [hiccup.core :as h]
+            [ring.adapter.jetty :as jetty]
             [ring.middleware.resource :refer [wrap-resource]]
-            [ring.middleware.content-type :refer [wrap-content-type]]
-            [ring.adapter.jetty :as jetty])
-  (:import org.eclipse.jetty.server.Server))
+            [ring.middleware.content-type :refer [wrap-content-type]])
+  )
 
 (defn html-handler [request]
   {:status 200
    :body (h/html
           [:html
            [:body
-            [:h2 "Hello world!"]
+            [:h2 "Hello world again!"]
             [:script {:type "application/javascript" :src "/out/hello.js"}]]])})
 
 (defn json-handler [request]
@@ -29,8 +29,5 @@
    (wrap-resource handler "public")
    #_(wrap-content-type)))
 
-(def ^Server server
+(defn new-jetty []
   (jetty/run-jetty (var app) {:port 3000 :join? false}))
-
-(comment
-  (-> server .stop))
