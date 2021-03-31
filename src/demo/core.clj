@@ -12,7 +12,7 @@
           [:html
            [:body
             [:h2 "Hello world!"]
-            [:script {:type "application/javascript" :src "/out/main.js"}]]])})
+            [:script {:type "application/javascript" :src "/out/hello.js"}]]])})
 
 (defn json-handler [request]
   {:status 200
