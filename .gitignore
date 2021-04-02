@@ -5,3 +5,5 @@ tmp/
 
 resources/public/out
 /out
+/node_modules
+/.shadow-cljs
