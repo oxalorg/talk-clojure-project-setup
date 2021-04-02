@@ -2,7 +2,7 @@
 
 (println "Hello from println")
 (js/console.log "Hello from console.log")
-(js/alert "Hello from alert")
+(js/alert "Hello from cljs repl w00t??? 2 repls working togeteher asd asds asd asd a")
 
 
 (def hello (let [h4 (-> js/document

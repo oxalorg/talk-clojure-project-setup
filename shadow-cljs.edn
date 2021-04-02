@@ -1,9 +1,10 @@
 ;; shadow-cljs configuration
 {:source-paths
  ["src"]
+ :deps {:alises ["dev"]}
 
- :dependencies
- [[cider/cider-nrepl "0.21.0"]]
+ ;; :dependencies
+ ;; [[cider/cider-nrepl "0.21.0"]]
 
  :builds
  {:demo {:target :browser
