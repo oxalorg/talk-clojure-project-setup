@@ -1,0 +1,26 @@
+{
+  "name": "http-api",
+  "version": "1.0.0",
+  "description": "- Ring + Jetty backend server - JSON api handler + HTML page handler - Hiccup and rendering html - CSS files - Simple vanilla clojurescript example (no additional tools) - Autobuilding cljs->js (no additiona tools, except cljs itself) - Solving server startup with `dev/user.clj` - REPL jacking in with dev profile - Easier server lifecycle management - Adding in shadow-cljs and jacking in with clj&cljs BOTH - Adding Reagent and fetching our API from frontend - Adding Integrant - Small quick notes on repl_sessions and easy deployment",
+  "main": "index.js",
+  "dependencies": {
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "shadow-cljs": "^2.12.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oxalorg/talk-clojure-project-setup.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oxalorg/talk-clojure-project-setup/issues"
+  },
+  "homepage": "https://github.com/oxalorg/talk-clojure-project-setup#readme"
+}

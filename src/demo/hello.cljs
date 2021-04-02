@@ -1,4 +1,6 @@
-(ns demo.hello)
+(ns demo.hello
+  (:require [reagent.core :as reagent]
+            [reagent.dom :as reagent-dom]))
 
 (println "Hello from println")
 (js/console.log "Hello from console.log")
@@ -13,3 +15,7 @@
 (println hello)
 
 (.appendChild js/document.body hello)
+
+(reagent-dom/render
+ [:h3 "Rendering from reagent"]
+ js/document.body)
