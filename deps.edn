@@ -5,6 +5,7 @@
         metosin/reitit {:mvn/version "0.5.12"}
         ;; cljs
         org.clojure/clojurescript {:mvn/version "1.10.758"}
+        lambdaisland/fetch {:mvn/version "0.0.23"}
         reagent/reagent {:mvn/version "1.0.0"}}
 
  :aliases

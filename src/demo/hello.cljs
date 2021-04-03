@@ -27,3 +27,7 @@
 (reagent-dom/render
  [main]
  js/document.body)
+
+(-> (js/fetch "/api.json")
+    (.then (fn [resp] (.json resp)))
+    (.then (fn [data] (js/console.log data))))
