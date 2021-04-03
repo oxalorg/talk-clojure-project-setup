@@ -2,6 +2,7 @@
   (:require [clojure.data.json :as json]
             [hiccup.core :as h]
             [ring.adapter.jetty :as jetty]
+            [reitit.ring :as ring]
             [ring.middleware.resource :refer [wrap-resource]]
             [ring.middleware.content-type :refer [wrap-content-type]])
   )
@@ -25,9 +26,13 @@
     (html-handler request)))
 
 (def app
-  (->
-   (wrap-resource handler "public")
-   #_(wrap-content-type)))
+  (ring/ring-handler
+   (ring/router
+    [["/api.json" {:get json-handler}]
+     ["/" {:get html-handler}]])
+   (ring/routes
+    (ring/create-default-handler))
+   {:middleware [[wrap-resource "public"]]}))
 
 (defn new-jetty []
   (jetty/run-jetty (var app) {:port 3000 :join? false}))
