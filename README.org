@@ -1,0 +1,138 @@
+#+TITLE: Clj[s] Setup Talk
+#+DATE: 2020-04-03
+#+AUTHOR: @oxalorg
+
+* 👋 Hey
+** Why this talk?
+- live example
+- watchable lang, harder to learn yourself
+*** ...
++ +show off my emacs setup+
+** (-> :who :am :i)
+- Mitesh: @oxalorg https://oxal.org
+- https://LambdaIsland.com
+- https://gaiwan.co 🍵 - A clojure consultancy
+** DEMOGODS?!?!?!
+💥 Feel free to interrupt me or just send a chat message
+🙈 +Bare with me+ Expect things to go wrong
+🚀 Let's see how much we can do in about an hour!
+* Let's start!
+** dir structure
+- deps.edn
+- REPL
+** render a http page
+- add ring, jetty
+- hello world page!
+** story of var and repl
+- add app
+- divide into json and html handler
+- simple case router
+** hiccup 🍷
+- render full html
+- resources directory
+- add css files
+- add hello.js
+** TODO reitit routing
+- if time left
+* Back to the future
+** user ns
+- a slightly better way to start jetty
+- aliases and dev
+  + modifying jack-in
+** better lifecycle management
+- global state
+- start / stop /reset server
+- reloading using ~c.t.n.r~
+- why put this in user?
+** best lifecycle management [integrant]
+- global state, reloaded, refresh
+- configuration, dependency injection
+- implementation, multi method dispatch
+- Example
+  #+begin_src clojure
+(def config {...})
+(defmethod ig/init-key :component-a [_ {:keys [...]}]
+  (...))
+(def system
+  (ig/init config))
+(ig/read-string (slurp "config.edn"))
+(defmethod ig/halt-key! :component-a [_ implementation]
+  (...))
+  #+end_src
+- Halted in reverse order
+- Using ~(ig/init config [:comp1 :comp2])~ eg. worker process
+- key name conventions
+  + loading of namespaces ~(ig/load-namespaces config)~
+- code reloading how? reset how?
+  + ~clojure.tools.namespace.repl~
+  + reloaded workflow -> ig-repl
+- ~integrant.repl.state/system~
+** aero configuration management
+** quick notes
+- repl_sessions
+- ~-X~ functions
+- easiest deployment flow
+
+* :CLJS
+figwheel-main / shadow-cljs
+** is this a coincidence?
+- java ↔ javascript
+- clojure ↔ clojurescript
+** vanilla cljs
+- what really is cljs?
+- hello.js -> hey.cljs
+- compile and serve
+- auto building cljs
+  + this should be enough for simple use cases
+- prod build ~--optimizations advanced~
+* THE SHADOW REALM 👾
+** what is it?
+- basic setup, ns finding / indexing
+- output organizing
+** jack in to 2 repls?!?!?🔥
+- probably the toughest thing I struggled with
+- elisp to the rescue
+- still figuring my way out
+** adding reagent vs react
+- npm-deps
+- cljsjs
+- shadow-cljs
+** npm packages as-is
+** fetching from our API
+** externs
+* (promotion :oxalorg)
+** Youtube
+https://www.youtube.com/channel/UCd588hDu4bszrSHlLXC8eZA
+** Twitter
+https://twitter.com/oxalorg
+** Have Clj / Cljs work in mind?
+- Feel free to connect with us ~mitesh@gaiwan.co~
+- https://gaiwan.co
+
+# Clojure + Clojurescript project setup
+
+- Ring + Jetty backend server
+- JSON api handler + HTML page handler
+- Hiccup and rendering html
+- CSS files
+- Simple vanilla clojurescript example (no additional tools)
+- Autobuilding cljs->js (no additiona tools, except cljs itself)
+- Solving server startup with `dev/user.clj`
+- REPL jacking in with dev profile
+- Easier server lifecycle management
+- Adding in shadow-cljs and jacking in with clj&cljs BOTH
+- Adding Reagent and fetching our API from frontend
+- Adding Integrant
+- Small quick notes on repl_sessions and easy deployment
+
+## TODO notes
+
+first run
+
+``` sh
+clj --main cljs.main --compile hello-world.core
+mv out resources/public/
+
+# advanced
+clj --main cljs.main -d resources/public/out -co "{:output-to \"resources/public/out/hello.js\" :asset-path \"out\"}" -w src --compile demo.hello
+```
